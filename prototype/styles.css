@@ -57,6 +57,8 @@ h2 { margin: 0; color: var(--navy); font-size: 17px; letter-spacing: -.015em; }
 .primary, .secondary { min-height: 38px; padding: 8px 14px; border-radius: 7px; font-weight: 700; }
 .primary { border: 1px solid var(--blue); color: #fff; background: var(--blue); }
 .primary:hover { background: #1f6795; }
+.primary:disabled { cursor: not-allowed; opacity: .55; }
+.compact { min-height: 32px; padding: 5px 9px; font-size: 11px; }
 .secondary { border: 1px solid var(--line); color: var(--navy); background: #fff; }
 .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 18px; }
 .stat-card, .panel { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
@@ -133,6 +135,7 @@ tbody tr:hover { background: #fafcfd; }
 .unit-card-foot { padding: 13px 16px; }
 .unit-card-foot > strong { color: var(--navy); }
 .unit-card-foot > strong span { color: var(--muted); font-size: 10px; font-weight: 500; }
+.card-actions { display: flex; gap: 7px; }
 .reset-demo { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; border: 0; color: var(--muted); background: transparent; font-size: 11px; }
 .modal-backdrop { position: fixed; inset: 0; z-index: 40; display: grid; place-items: center; padding: 15px; background: rgba(8,24,39,.55); }
 .modal { width: min(620px,100%); border-radius: 12px; background: #fff; box-shadow: 0 20px 70px rgba(11,31,50,.28); }
@@ -154,6 +157,10 @@ tbody tr:hover { background: #fafcfd; }
 .room-dialog label { display: grid; gap: 6px; margin-bottom: 14px; color: var(--navy); font-size: 12px; font-weight: 700; }
 .room-dialog input, .room-dialog select { width: 100%; min-height: 40px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 7px; color: var(--ink); background: #fff; }
 .form-help { margin: 0; color: var(--muted); font-size: 11px; }
+.form-error { margin: 0; color: #9e3737; font-size: 12px; font-weight: 700; }
+.choice-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 18px; padding: 4px; border-radius: 8px; background: #eef3f6; }
+.choice-tabs button { min-height: 36px; border: 0; border-radius: 6px; color: var(--muted); background: transparent; font-weight: 700; }
+.choice-tabs button.active { color: var(--navy); background: #fff; box-shadow: 0 1px 3px rgba(11,31,50,.12); }
 .dialog-actions { display: flex; justify-content: flex-end; gap: 9px; margin-top: 20px; }
 @media (max-width: 1050px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } .report-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 800px) {
