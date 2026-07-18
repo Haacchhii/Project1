@@ -2,7 +2,7 @@ import { createContext, useContext, useMemo, useState, type ReactNode } from 're
 import { initialAppData } from '../data/mockData'
 import { convertViewing, recordMaintenanceExpense, type MaintenanceExpenseInput } from '../domain/appData'
 import { assignTenant, createAndAssignTenant, type TenantAssignmentInput } from '../domain/occupancy'
-import { updateRoom, type RoomDetails } from '../domain/roomLayout'
+import { unitRateAtFullCapacity, updateRoom, type RoomDetails } from '../domain/roomLayout'
 import type { AppData, Lease, Payment, Room, Viewing } from '../domain/types'
 
 interface AppStore extends AppData {
@@ -29,7 +29,7 @@ export function AppStoreProvider({children}:{children:ReactNode}){
   const [data,setData]=useState<AppData>(loadData)
   const update=(transition:(current:AppData)=>AppData)=>setData(current=>{const next=transition(current);localStorage.setItem(STORAGE_KEY,JSON.stringify(next));return next})
   const value=useMemo<AppStore>(()=>({...data,
-    addRoom:(unitId,room)=>update(current=>({...current,units:current.units.map(unit=>unit.id===unitId?{...unit,rooms:[...unit.rooms,{...room,id:crypto.randomUUID()}],monthlyRate:unit.monthlyRate+room.rate}:unit)})),
+    addRoom:(unitId,room)=>update(current=>({...current,units:current.units.map(unit=>{if(unit.id!==unitId)return unit;const rooms=[...unit.rooms,{...room,id:crypto.randomUUID()}];return {...unit,rooms,monthlyRate:unitRateAtFullCapacity(rooms)}})})),
     updateRoom:(unitId,roomId,details)=>update(current=>({...current,units:updateRoom(current.units,unitId,roomId,details)})),
     assignTenant:(tenantId,unitId,roomId)=>update(current=>({...current,...assignTenant(current.units,current.tenants,tenantId,unitId,roomId)})),
     addTenantToRoom:(input)=>update(current=>({...current,...createAndAssignTenant(current.units,current.tenants,input)})),
