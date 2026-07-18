@@ -1,8 +1,8 @@
-import { Bell, Building2, CircleHelp, FileText, LayoutDashboard, Menu, PhilippinePeso, Search, TrendingUp, Users, Wrench, X } from 'lucide-react'
+import { Bell, Building2, CalendarDays, CircleHelp, FileText, LayoutDashboard, Menu, PhilippinePeso, Search, TrendingUp, Users, Wrench, X } from 'lucide-react'
 import { NavLink, Outlet } from 'react-router-dom'
 import { useState } from 'react'
 
-const links=[['/','Dashboard',LayoutDashboard],['/units','Units',Building2],['/tenants','Tenants',Users],['/leases','Leases',FileText],['/payments','Payments',PhilippinePeso],['/maintenance','Maintenance',Wrench],['/reports','Reports',TrendingUp]] as const
+const links=[['/','Dashboard',LayoutDashboard],['/viewings','Viewings',CalendarDays],['/units','Units',Building2],['/tenants','Tenants',Users],['/leases','Leases',FileText],['/payments','Payments',PhilippinePeso],['/maintenance','Maintenance',Wrench],['/reports','Reports',TrendingUp]] as const
 export function Layout(){
   const [open,setOpen]=useState(false)
   return <div className="app-shell">

@@ -35,7 +35,7 @@ export function AppStoreProvider({children}:{children:ReactNode}){
     convertViewing:(id,assignment)=>update(current=>convertViewing(current,id,assignment)),
     saveLease:(input)=>update(current=>{const tenant=current.tenants.find(record=>record.id===input.tenantId);if(!tenant)throw new Error('Tenant not found');const lease:Lease={...input,id:crypto.randomUUID(),tenant:tenant.name,unit:tenant.unit};return {...current,leases:[lease,...current.leases.filter(record=>record.tenantId!==input.tenantId)],tenants:current.tenants.map(record=>record.id===input.tenantId?{...record,deposit:input.deposit}:record)}}),
     addPayment:(input)=>update(current=>{const tenant=current.tenants.find(record=>record.id===input.tenantId);if(!tenant)throw new Error('Tenant not found');return {...current,payments:[{...input,id:crypto.randomUUID(),tenant:tenant.name,unit:tenant.unit},...current.payments]}}),
-    addMaintenance:(input)=>update(current=>recordMaintenanceExpense(current,input)),
+    addMaintenance:(input)=>{const next=recordMaintenanceExpense(data,input);localStorage.setItem(STORAGE_KEY,JSON.stringify(next));setData(next)},
     updateContractTemplate:(name)=>update(current=>({...current,contractTemplate:{name,updatedAt:new Date().toISOString().slice(0,10)}})),
     resetDemo:()=>{const next=cloneInitial();localStorage.removeItem(STORAGE_KEY);setData(next)},
   }),[data])

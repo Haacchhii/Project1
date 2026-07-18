@@ -22,4 +22,8 @@ describe('connected UnitFlow records', () => {
   it('rejects maintenance deductions above the remaining deposit', () => {
     expect(()=>recordMaintenanceExpense(initialAppData,{unitId:'u3',tenantId:'t2',category:'Repair',description:'Major repair',date:'2026-07-18',amount:50000,tenantShare:50000,payer:'Tenant deposit',evidenceName:''})).toThrow('remaining deposit')
   })
+
+  it('rejects a tenant share larger than the maintenance expense', () => {
+    expect(()=>recordMaintenanceExpense(initialAppData,{unitId:'u3',tenantId:'t2',category:'Repair',description:'Shared repair',date:'2026-07-18',amount:1000,tenantShare:1500,payer:'Shared',evidenceName:''})).toThrow('total expense')
+  })
 })
