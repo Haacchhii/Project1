@@ -67,7 +67,7 @@
   - Verify: browser accessibility/console/responsive checks
   - Files: layout, dashboard, shared UI, styles
 
-- [ ] Task 12: Review, verify, and deploy
+- [x] Task 12: Review, verify, and deploy
   - Acceptance: No material review findings; all tests, type checking, build, and Pages verification pass; live site serves the new bundle.
   - Verify: full command suite plus GitHub Actions and live URL
   - Files: only issue-specific fixes discovered during review
