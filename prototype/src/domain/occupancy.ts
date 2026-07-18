@@ -46,6 +46,7 @@ export function createAndAssignTenant(units: Unit[], tenants: Tenant[], input: T
     unit: '',
     room: '',
     balance: 0,
+    deposit: 0,
     status: 'Active',
   }
   return assignTenant(units, [...tenants, tenant], id, input.unitId, input.roomId)
